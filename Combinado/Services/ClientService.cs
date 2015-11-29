@@ -1,64 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using Kadevjo;
 
 namespace Combinado
 {
-	public class ClientService : IService<Client>
+	public class ClientService : RestManager<ClientService,Client>
 	{
-		#region IService implementation
+		#region implemented abstract members of RestManager
 
-		public bool Create (Client model)
-		{
-			throw new NotImplementedException ();
+		protected override string BaseUrl {
+			get {
+				return "https://api.parse.com/";
+			}
 		}
 
-		public Client Read (string id)
-		{
-			throw new NotImplementedException ();
+		protected override Dictionary<string, string> Headers {
+			get {
+				return new Dictionary<string,string> () { 
+					{ "X-Parse-Application-Id", "UJBDejGLZAX85aHNdQSO0sRAba8mWDRxLUFSg05Q" },
+					{ "X-Parse-REST-API-Key", "esywSuWhSi8bVoXrnem980emUdCw9d6SMqCL5Q7D" }
+				};
+			}
 		}
 
-		public List<Client> ReadAll ()
-		{
-			List<Client> clients = new List<Client> ();
-
-			clients.Add ( new Client() {
-				Name = "Pedro Perez",
-				Phone = "2222-2222",
-				PictureUrl = "http://www.kadevjo.com/firmas/nchicas.png"
-			});
-
-			clients.Add ( new Client() {
-				Name = "Pablo Escobar",
-				Phone = "2234-3455",
-				PictureUrl = "http://www.kadevjo.com/firmas/nchicas.png"
-			});
-
-			clients.Add ( new Client() {
-				Name = "Ronaldinho Gaucho",
-				Phone = "2222-2222",
-				PictureUrl = "http://www.kadevjo.com/firmas/nchicas.png"
-			});
-
-			clients.Add ( new Client() {
-				Name = "Paco Flores",
-				Phone = "4656-4566",
-				PictureUrl = "http://www.kadevjo.com/firmas/nchicas.png"
-			});
-
-			return clients;
+		protected override string Resource {
+			get {
+				return "1/classes/Client";
+			}
 		}
 
-		public bool Update (Client model)
+		public override async System.Threading.Tasks.Task<List<Client>> ReadAll ()
 		{
-			throw new NotImplementedException ();
-		}
-
-		public bool Delete (string id)
-		{
-			throw new NotImplementedException ();
+			ParseResponse<Client> response = await Execute <ParseResponse<Client>> ( Resource );
+			return response.Results;
 		}
 
 		#endregion
+
+
 	}
 }
 

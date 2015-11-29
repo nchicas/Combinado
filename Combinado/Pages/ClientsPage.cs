@@ -9,7 +9,7 @@ namespace Combinado
 		public ClientsPage ()
 		{
 			Title = "Clientes";
-			InitalizeComponents ();
+			InitalizeComponents ().ConfigureAwait(false);
 		}
 
 		void ClientsList_ItemTapped (object sender, ItemTappedEventArgs e)

@@ -13,9 +13,7 @@ namespace Combinado
 		public PurchaseOrderPage ()
 		{
 			Title = "Pedido";
-			products = (new ProductService ()).ReadAll ();
-			clients = (new ClientService ()).ReadAll ();
-			InitializeComponents ();
+			InitializeComponents ().ConfigureAwait(false);
 		}
 
 		void OrderButton_Clicked (object sender, EventArgs e)

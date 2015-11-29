@@ -13,13 +13,6 @@ namespace Combinado
 			this.client = client;
 			InitializeComponents ();
 		}
-
-		public ClientDetailPage ( string id )
-		{
-			ClientService service = new ClientService ();
-			this.client = service.Read ( id );
-			InitializeComponents ();
-		}
 	}
 }
 

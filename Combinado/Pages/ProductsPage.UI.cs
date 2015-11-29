@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Xamarin.Forms;
+using System.Threading.Tasks;
 
 namespace Combinado
 {
@@ -10,14 +11,13 @@ namespace Combinado
 	{
 		private ListView productsList;
 
-		private void InitializeComponents ()
+		private async Task InitializeComponents ()
 		{
 			// Primero: Creamos el Layout
 			// *Cuando sólo hay un control en el Page no se usa Layout
 
 			// Segundo: Agregamos los controles al Layout
-			ProductService service = new ProductService();
-			List<Product> products = service.ReadAll ();
+			List<Product> products = await ProductService.Instance.ReadAll();
 			var data = products.Where ( 
 				p => p.Category == category && 
 				p.Subcategory == subcategory 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
+using System.Threading.Tasks;
 
 namespace Combinado
 {
@@ -9,14 +10,13 @@ namespace Combinado
 	{
 		private ListView clientsList;
 
-		private void InitalizeComponents()
+		private async Task InitalizeComponents()
 		{
 			// Primero: Creamos el Layout
 			// *Cuando sólo hay un control en el Page no se usa Layout
 
 			// Segundo: Agregamos los controles al Layout
-			ClientService service = new ClientService();
-			List<Client> clients = service.ReadAll ();
+			List<Client> clients = await ClientService.Instance.ReadAll();
 
 			clientsList = new ListView () {
 				HasUnevenRows = true,

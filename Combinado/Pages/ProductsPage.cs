@@ -14,7 +14,7 @@ namespace Combinado
 			this.category = category;
 			this.subcategory = subcategory;
 			System.Diagnostics.Debug.WriteLine ( category.ToString() + " " + subcategory.ToString() );
-			InitializeComponents ();
+			InitializeComponents ().ConfigureAwait(false);
 		}
 	}
 }

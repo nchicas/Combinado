@@ -1,78 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using Kadevjo;
 
 namespace Combinado
 {
-	public class ProductService : IService<Product>
+	public class ProductService : RestManager<ProductService,Product>
 	{
-		#region IService implementation
+		#region implemented abstract members of RestManager
 
-		public bool Create (Product model)
-		{
-			throw new NotImplementedException ();
+		protected override string BaseUrl {
+			get {
+				return "https://api.parse.com/";
+			}
 		}
 
-		public Product Read (string id)
-		{
-			throw new NotImplementedException ();
+		protected override Dictionary<string, string> Headers {
+			get {
+				return new Dictionary<string,string> () { 
+					{ "X-Parse-Application-Id", "UJBDejGLZAX85aHNdQSO0sRAba8mWDRxLUFSg05Q" },
+					{ "X-Parse-REST-API-Key", "esywSuWhSi8bVoXrnem980emUdCw9d6SMqCL5Q7D" }
+				};
+			}
 		}
-		public List<Product> ReadAll ()
-		{
-			List<Product> products = new List<Product> ();
 
-			products.Add ( new Product() {
-				Id = "1",
-				Name = "Zapatos de tacón",
-				ImageUrl = "http://www.kadevjo.com/firmas/nchicas.png",
-				Price = 23.99f,
-				Stock = 25,
-				Category = Category.Shoe,
-				Subcategory = Subcategory.International
-			});
-
-			products.Add ( new Product() {
-				Id = "2",
-				Name = "Chorys",
-				ImageUrl = "http://www.kadevjo.com/firmas/nchicas.png",
-				Price = 0.90f,
-				Stock = 1000,
-				Category = Category.Food,
-				Subcategory = Subcategory.Local
-			});
-
-			products.Add ( new Product() {
-				Id = "3",
-				Name = "Coca Cola",
-				ImageUrl = "http://www.kadevjo.com/firmas/nchicas.png",
-				Price = 0.5f,
-				Stock = 10000,
-				Category = Category.Beverage,
-				Subcategory = Subcategory.Regional
-			});
-
-			products.Add ( new Product() {
-				Id = "4",
-				Name = "Chaparro",
-				ImageUrl = "http://www.kadevjo.com/firmas/nchicas.png",
-				Price = 12.99f,
-				Stock = 25,
-				Category = Category.Beverage,
-				Subcategory = Subcategory.Regional
-			});
-
-			return products;
+		protected override string Resource {
+			get {
+				return "1/classes/Product";
+			}
 		}
-		public bool Update (Product model)
+
+		public override async System.Threading.Tasks.Task<List<Product>> ReadAll ()
 		{
-			throw new NotImplementedException ();
-		}
-		public bool Delete (string id)
-		{
-			throw new NotImplementedException ();
+			ParseResponse<Product> response = await Execute <ParseResponse<Product>> ( Resource );
+			return response.Results;
 		}
 
 		#endregion
-		
+
+
 	}
 }
 

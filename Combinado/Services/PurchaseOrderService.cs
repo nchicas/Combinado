@@ -1,34 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using Kadevjo;
 
 namespace Combinado
 {
-	public class PurchaseOrderService : IService<PurchaseOrder>
+	public class PurchaseOrderService : RestManager<PurchaseOrderService,PurchaseOrder>
 	{
-		#region IService implementation
+		#region implemented abstract members of RestManager
 
-		public bool Create (PurchaseOrder model)
-		{
-			throw new NotImplementedException ();
+		protected override string BaseUrl {
+			get {
+				return "https://api.parse.com/";
+			}
 		}
-		public PurchaseOrder Read (string id)
-		{
-			throw new NotImplementedException ();
+
+		protected override Dictionary<string, string> Headers {
+			get {
+				return new Dictionary<string,string> () { 
+					{ "X-Parse-Application-Id", "UJBDejGLZAX85aHNdQSO0sRAba8mWDRxLUFSg05Q" },
+					{ "X-Parse-REST-API-Key", "esywSuWhSi8bVoXrnem980emUdCw9d6SMqCL5Q7D" }
+				};
+			}
 		}
-		public List<PurchaseOrder> ReadAll ()
-		{
-			throw new NotImplementedException ();
-		}
-		public bool Update (PurchaseOrder model)
-		{
-			throw new NotImplementedException ();
-		}
-		public bool Delete (string id)
-		{
-			throw new NotImplementedException ();
+
+		protected override string Resource {
+			get {
+				return "1/classes/PurchaseOrder";
+			}
 		}
 
 		#endregion
+
+
 	}
 }
 

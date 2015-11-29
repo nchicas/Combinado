@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Xamarin.Forms;
+using System.Threading.Tasks;
 
 namespace Combinado
 {
@@ -15,8 +16,11 @@ namespace Combinado
 		private Picker clientPicker;
 		private CustomButton orderButton;
 
-		private void InitializeComponents()
+		private async Task InitializeComponents()
 		{
+			products = await ProductService.Instance.ReadAll ();
+			clients = await ClientService.Instance.ReadAll ();
+
 			StackLayout layout = new StackLayout ();
 
 			priceEntry = new Entry () { 
