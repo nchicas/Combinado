@@ -11,13 +11,13 @@ namespace Combinado
 	public class PurchaseOrder
 	{
 		public string Id { get; set; }
-		public float UnitPrice { get; set; }
+		public float UnitPrice { get; set; } 
 		public float Quantity { get; set; }
-		public DateTime Timestamp { get; set; }
-		public string Details { get; set; }
-		public Location Location { get; set; }
-		public Product Product { get; set; }
-		public Client Client { get; set; }
+		public DateTime Timestamp { get; set; } 
+		public string Details { get; set; } 
+		public Location Location { get; set; } 
+		public Product Product { get; set; } 
+		public Client Client { get; set; } 
 	}
 }
 

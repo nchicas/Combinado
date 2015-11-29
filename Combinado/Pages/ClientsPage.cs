@@ -4,16 +4,18 @@ using Xamarin.Forms;
 
 namespace Combinado
 {
-	public class ClientsPage : ContentPage
+	public partial class ClientsPage : ContentPage
 	{
 		public ClientsPage ()
 		{
 			Title = "Clientes";
-			Content = new StackLayout { 
-				Children = {
-					new Label { Text = "Hello Clients" }
-				}
-			};
+			InitalizeComponents ();
+		}
+
+		void ClientsList_ItemTapped (object sender, ItemTappedEventArgs e)
+		{
+			Client client = (Client)e.Item;
+			Navigation.PushAsync ( new ClientDetailPage(client) );
 		}
 	}
 }

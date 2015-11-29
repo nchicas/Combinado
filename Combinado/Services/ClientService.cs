@@ -19,7 +19,33 @@ namespace Combinado
 
 		public List<Client> ReadAll ()
 		{
-			throw new NotImplementedException ();
+			List<Client> clients = new List<Client> ();
+
+			clients.Add ( new Client() {
+				Name = "Pedro Perez",
+				Phone = "2222-2222",
+				PictureUrl = "http://www.kadevjo.com/firmas/nchicas.png"
+			});
+
+			clients.Add ( new Client() {
+				Name = "Pablo Escobar",
+				Phone = "2234-3455",
+				PictureUrl = "http://www.kadevjo.com/firmas/nchicas.png"
+			});
+
+			clients.Add ( new Client() {
+				Name = "Ronaldinho Gaucho",
+				Phone = "2222-2222",
+				PictureUrl = "http://www.kadevjo.com/firmas/nchicas.png"
+			});
+
+			clients.Add ( new Client() {
+				Name = "Paco Flores",
+				Phone = "4656-4566",
+				PictureUrl = "http://www.kadevjo.com/firmas/nchicas.png"
+			});
+
+			return clients;
 		}
 
 		public bool Update (Client model)
