@@ -123,7 +123,8 @@ namespace Kadevjo
 			try {
 				var response = await Client.Execute( request );
 
-				if( response.StatusCode == HttpStatusCode.OK ) {
+				if( response.StatusCode == HttpStatusCode.OK ||
+					response.StatusCode == HttpStatusCode.Created ) {
 					return true;
 				}
 				else {

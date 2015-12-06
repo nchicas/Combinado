@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace Combinado
 {
@@ -20,8 +21,9 @@ namespace Combinado
 		International
 	}
 
-	public class Product
+	public class Product : ICacheable
 	{
+		[JsonProperty("objectId")]
 		public string Id { get; set; }
 		public string Name { get; set; }
 		public string Description { get; set; }

@@ -1,9 +1,11 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace Combinado
 {
-	public class Client
+	public class Client : ICacheable
 	{
+		[JsonProperty("objectId")]
 		public string Id { get; set; }
 		public string Name { get; set; }
 		public string PictureUrl { get; set; }
